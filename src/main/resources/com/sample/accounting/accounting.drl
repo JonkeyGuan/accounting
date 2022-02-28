@@ -1,0 +1,8 @@
+package com.sample.accounting;
+
+rule "hello"
+when
+    s: String()
+then
+    System.out.println("[" + drools.getRule().getName()+"] " + ": " + s);
+end
