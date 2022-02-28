@@ -1,6 +1,6 @@
-package com.sample.split.resource;
+package com.sample.accounting.resource;
 
-import com.sample.split.domain.accounting.Accounting;
+import com.sample.accounting.domain.accounting.Accounting;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

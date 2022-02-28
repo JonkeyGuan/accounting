@@ -1,9 +1,9 @@
-package com.sample.split.repository;
+package com.sample.accounting.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sample.split.domain.workhours.WorkHoursItem;
+import com.sample.accounting.domain.workhours.WorkHoursItem;
 
 import org.springframework.stereotype.Repository;
 

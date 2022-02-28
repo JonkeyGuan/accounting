@@ -1,9 +1,9 @@
-package com.sample.split.domain;
+package com.sample.accounting.domain;
 
 import java.util.List;
 
-import com.sample.split.domain.accounting.AccountingItem;
-import com.sample.split.domain.accounting.BaseAccounting;
+import com.sample.accounting.domain.accounting.AccountingItem;
+import com.sample.accounting.domain.accounting.BaseAccounting;
 
 import org.springframework.stereotype.Service;
 

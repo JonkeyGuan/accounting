@@ -1,14 +1,14 @@
-package com.sample.split.domain;
+package com.sample.accounting.domain;
 
 import java.util.List;
 
-import com.sample.split.domain.accounting.AccountingItem;
-import com.sample.split.domain.accounting.BaseAccounting;
+import com.sample.accounting.domain.accounting.AccountingItem;
+import com.sample.accounting.domain.accounting.BaseAccounting;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class Buyer implements BaseAccounting {
+public class Product implements BaseAccounting{
 
     @Override
     public List<AccountingItem> accountForChannel(List<AccountingItem> items) {
@@ -17,7 +17,7 @@ public class Buyer implements BaseAccounting {
 
     @Override
     public String name() {
-        return "buyer";
+        return "product";
     }
 
     @Override

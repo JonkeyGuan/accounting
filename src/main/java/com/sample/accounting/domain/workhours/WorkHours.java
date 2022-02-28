@@ -1,4 +1,4 @@
-package com.sample.split.domain.workhours;
+package com.sample.accounting.domain.workhours;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.sample.split.domain.accounting.AccountingItem;
-import com.sample.split.domain.accounting.BaseAccounting;
-import com.sample.split.repository.WorkHoursRepository;
+import com.sample.accounting.domain.accounting.AccountingItem;
+import com.sample.accounting.domain.accounting.BaseAccounting;
+import com.sample.accounting.repository.WorkHoursRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

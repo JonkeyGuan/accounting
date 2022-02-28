@@ -1,4 +1,4 @@
-package com.sample.split.domain;
+package com.sample.accounting.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.sample.split.domain.accounting.AccountingItem;
-import com.sample.split.domain.accounting.AccountingItemUtils;
-import com.sample.split.domain.accounting.BaseAccounting;
-import com.sample.split.repository.AccountingRepository;
+import com.sample.accounting.domain.accounting.AccountingItem;
+import com.sample.accounting.domain.accounting.AccountingItemUtils;
+import com.sample.accounting.domain.accounting.BaseAccounting;
+import com.sample.accounting.repository.AccountingRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

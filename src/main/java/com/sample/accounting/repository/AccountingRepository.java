@@ -1,11 +1,11 @@
-package com.sample.split.repository;
+package com.sample.accounting.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.sample.split.domain.accounting.AccountingItem;
-import com.sample.split.domain.accounting.AccountingItemUtils;
+import com.sample.accounting.domain.accounting.AccountingItem;
+import com.sample.accounting.domain.accounting.AccountingItemUtils;
 
 import org.springframework.stereotype.Repository;
 

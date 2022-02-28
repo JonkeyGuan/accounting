@@ -1,6 +1,6 @@
-package com.sample.split;
+package com.sample.accounting;
 
-import com.sample.split.resource.AccountingResource;
+import com.sample.accounting.resource.AccountingResource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

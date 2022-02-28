@@ -1,4 +1,4 @@
-package com.sample.split.domain.accounting;
+package com.sample.accounting.domain.accounting;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

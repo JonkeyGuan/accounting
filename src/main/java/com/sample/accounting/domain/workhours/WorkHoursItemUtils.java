@@ -1,10 +1,10 @@
-package com.sample.split.domain.workhours;
+package com.sample.accounting.domain.workhours;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.sample.split.domain.accounting.AccountingItem;
+import com.sample.accounting.domain.accounting.AccountingItem;
 
 public class WorkHoursItemUtils {
 

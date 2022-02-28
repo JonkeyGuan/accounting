@@ -1,4 +1,4 @@
-package com.sample.split.domain.workhours;
+package com.sample.accounting.domain.workhours;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

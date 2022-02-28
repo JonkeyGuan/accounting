@@ -1,4 +1,4 @@
-package com.sample.split.gateway;
+package com.sample.accounting.gateway;
 
 public interface RulesGateway {
     

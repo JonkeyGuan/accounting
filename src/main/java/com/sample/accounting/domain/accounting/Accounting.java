@@ -1,13 +1,13 @@
-package com.sample.split.domain.accounting;
+package com.sample.accounting.domain.accounting;
 
 import java.util.List;
 
-import com.sample.split.domain.Buyer;
-import com.sample.split.domain.Channel;
-import com.sample.split.domain.Market;
-import com.sample.split.domain.workhours.WorkHours;
-import com.sample.split.domain.workhours.WorkHoursNoneBG;
-import com.sample.split.repository.AccountingRepository;
+import com.sample.accounting.domain.Buyer;
+import com.sample.accounting.domain.Channel;
+import com.sample.accounting.domain.Market;
+import com.sample.accounting.domain.workhours.WorkHours;
+import com.sample.accounting.domain.workhours.WorkHoursNoneBG;
+import com.sample.accounting.repository.AccountingRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
