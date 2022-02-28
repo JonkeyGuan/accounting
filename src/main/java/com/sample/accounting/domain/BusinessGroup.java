@@ -5,9 +5,9 @@ import java.util.List;
 import com.sample.accounting.domain.accounting.AccountingItem;
 import com.sample.accounting.domain.accounting.BaseAccounting;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component("businessGroup")
 public class BusinessGroup implements BaseAccounting {
 
     @Override
@@ -18,11 +18,6 @@ public class BusinessGroup implements BaseAccounting {
     @Override
     public List<AccountingItem> accountForProduct(List<AccountingItem> items) {
         return items;
-    }
-
-    @Override
-    public String name() {
-        return "businessGroup";
     }
 
 }

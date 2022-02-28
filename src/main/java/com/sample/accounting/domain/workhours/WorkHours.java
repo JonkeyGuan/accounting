@@ -11,18 +11,13 @@ import com.sample.accounting.domain.accounting.BaseAccounting;
 import com.sample.accounting.repository.WorkHoursRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component("workHours")
 public class WorkHours implements BaseAccounting {
 
     @Autowired
     private WorkHoursRepository repository;
-
-    @Override
-    public String name() {
-        return "workHours";
-    }
 
     @Override
     public List<AccountingItem> accountForChannel(List<AccountingItem> items) {

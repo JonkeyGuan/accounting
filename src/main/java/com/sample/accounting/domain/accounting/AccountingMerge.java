@@ -5,15 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component("accountingMerge")
 public class AccountingMerge implements BaseAccounting {
-
-    @Override
-    public String name() {
-        return "accountingMerge";
-    }
 
     @Override
     public List<AccountingItem> accountForChannel(List<AccountingItem> items) {

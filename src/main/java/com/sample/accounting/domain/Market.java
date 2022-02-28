@@ -12,18 +12,13 @@ import com.sample.accounting.domain.accounting.BaseAccounting;
 import com.sample.accounting.repository.AccountingRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component("market")
 public class Market implements BaseAccounting {
 
     @Autowired
     private AccountingRepository repository;
-
-    @Override
-    public String name() {
-        return "market";
-    }
 
     @Override
     public List<AccountingItem> accountForProduct(List<AccountingItem> items) {
