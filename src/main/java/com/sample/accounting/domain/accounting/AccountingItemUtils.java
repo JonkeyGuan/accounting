@@ -28,6 +28,23 @@ public class AccountingItemUtils {
         return sb.toString();
     }
 
+    public static String getValue(AccountingItem item, String name) {
+        Class<AccountingItem> clazz = AccountingItem.class;
+        String result = "";
+            try {
+                Field field = clazz.getDeclaredField(name);
+                field.setAccessible(true);
+                Object value = field.get(item);
+                if (value != null) {
+                    result = String.valueOf(value);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        return result;
+    }
+
     public static String getGroupKey(AccountingItem item, List<String> condition) {
         Class<AccountingItem> clazz = AccountingItem.class;
         StringBuilder sb = new StringBuilder("");

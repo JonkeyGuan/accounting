@@ -36,9 +36,8 @@ public class AccountingRepository {
                 .collect(Collectors.toList());
         
         for(String condition : excludeCondition) {
-            String baseExcludeKey = AccountingItemUtils.getGroupKey(baseItem, List.of(condition));
             items = items.stream()
-            .filter(item -> !baseExcludeKey.equals(AccountingItemUtils.getGroupKey(item, List.of(condition))))
+            .filter(item -> !"ALL".equals(AccountingItemUtils.getValue(item, condition)))
             .collect(Collectors.toList());
         }
         return items;
