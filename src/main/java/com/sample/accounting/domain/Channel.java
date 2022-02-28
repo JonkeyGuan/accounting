@@ -27,15 +27,20 @@ public class Channel implements BaseAccounting {
 
     @Override
     public List<AccountingItem> accountForProduct(List<AccountingItem> items) {
-        return account(items, List.of("businessGroup", "businessUnit"));
+        List<String> includeCondition = List.of("businessGroup", "businessUnit");
+        List<String> excludeCondition = List.of("channel", "market");
+        return account(items, includeCondition, excludeCondition);
     }
 
     @Override
     public List<AccountingItem> accountForChannel(List<AccountingItem> items) {
-        return account(items, List.of());
+        List<String> includeCondition = List.of();
+        List<String> excludeCondition = List.of("channel", "market");
+        return account(items, includeCondition, excludeCondition);
     }
 
-    private List<AccountingItem> account(List<AccountingItem> items, List<String> includeCondition) {
+    private List<AccountingItem> account(List<AccountingItem> items, List<String> includeCondition,
+            List<String> excludeCondition) {
         List<AccountingItem> toExpandItems = items.stream().filter(item -> "ALL".equals(item.getMarket()))
                 .collect(Collectors.toList());
         List<AccountingItem> noChangeItems = items.stream().filter(item -> !"ALL".equals(item.getMarket()))
@@ -43,19 +48,20 @@ public class Channel implements BaseAccounting {
 
         List<AccountingItem> expandedItems = new ArrayList<AccountingItem>();
         toExpandItems.forEach(item -> {
-            expandedItems.addAll(expendedItem(item, includeCondition));
+            expandedItems.addAll(expendedItem(item, includeCondition, excludeCondition));
         });
 
         return Stream.concat(noChangeItems.stream(), expandedItems.stream()).collect(Collectors.toList());
     }
 
-    private List<AccountingItem> expendedItem(AccountingItem item, List<String> includeCondition) {
-        Map<AccountingItem, Double> percentage = calculatePercentage(item, includeCondition);
+    private List<AccountingItem> expendedItem(AccountingItem item, List<String> includeCondition,
+            List<String> excludeCondition) {
+        Map<AccountingItem, Double> percentage = calculatePercentage(item, includeCondition, excludeCondition);
         return AccountingItemUtils.prorate(item, percentage);
     }
 
-    private Map<AccountingItem, Double> calculatePercentage(AccountingItem baseItem, List<String> includeCondition) {
-        List<String> excludeCondition = List.of("channel", "market");
+    private Map<AccountingItem, Double> calculatePercentage(AccountingItem baseItem, List<String> includeCondition,
+            List<String> excludeCondition) {
         List<AccountingItem> items = repository.load(baseItem, includeCondition, excludeCondition);
         double total = items.stream().mapToDouble(item -> item.getAmount()).sum();
         return items.stream().collect(Collectors.toMap(item -> item, item -> item.getAmount() / total));

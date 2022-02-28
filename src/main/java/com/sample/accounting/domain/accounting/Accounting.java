@@ -41,24 +41,26 @@ public class Accounting {
 
     public void accountingByProduct() {
         List<AccountingItem> items = repository.load();
-        log.info("raw data: " + items);
+        // log.info("raw data: " + items);
         List<BaseAccounting> path = List.of(workHours, workHoursNoneBG, accountingMerge, buyer, market, channel);
         for (BaseAccounting node : path) {
             List<AccountingItem> expandItems = node.accountForProduct(items);
             items = expandItems;
-            log.info("after " + node.name() + " account: " + items);
+            // log.info("after " + node.name() + " account: " + items);
         }
+        log.info("product: " + items);
     }
 
     public void accountingByChannel() {
         List<AccountingItem> items = repository.load();
-        log.info("raw data: " + items);
+        // log.info("raw data: " + items);
         List<BaseAccounting> path = List.of(buyer, market, channel);
         for (BaseAccounting node : path) {
             List<AccountingItem> expandItems = node.accountForChannel(items);
             items = expandItems;
-            log.info("after " + node.name() + " account: " + items);
+            // log.info("after " + node.name() + " account: " + items);
         }
+        log.info("channel: " + items);
     }
 
 }
