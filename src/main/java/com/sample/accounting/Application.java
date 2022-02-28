@@ -1,6 +1,6 @@
 package com.sample.accounting;
 
-import com.sample.accounting.gateway.RulesGateway;
+// import com.sample.accounting.gateway.RulesGateway;
 import com.sample.accounting.resource.AccountingResource;
 
 import org.springframework.beans.factory.annotation.Autowired;
