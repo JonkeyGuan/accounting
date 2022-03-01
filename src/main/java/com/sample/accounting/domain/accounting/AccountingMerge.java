@@ -21,9 +21,11 @@ public class AccountingMerge implements BaseAccounting {
     }
 
     private List<AccountingItem> account(List<AccountingItem> items) {
+        List<String> condition = List.of("channel", "market", "buyer", "businessGroup", "businessUnit", "product",
+                "subCatalog", "catalog");
         Map<String, AccountingItem> map = new LinkedHashMap<>();
         items.forEach(item -> {
-            String key = AccountingItemUtils.getMergeKey(item);
+            String key = AccountingItemUtils.getMergeKey(item, condition);
             if (!map.containsKey(key)) {
                 map.put(key, item);
             } else {

@@ -1,64 +1,34 @@
 package com.sample.accounting.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.sample.accounting.domain.accounting.AccountingItem;
-import com.sample.accounting.domain.accounting.AccountingItemUtils;
-import com.sample.accounting.domain.accounting.BaseAccounting;
-import com.sample.accounting.repository.AccountingRepository;
+import com.sample.accounting.domain.accounting.AccountingItemAccounting;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("market")
-public class Market implements BaseAccounting {
-
-    @Autowired
-    private AccountingRepository repository;
+public class Market extends AccountingItemAccounting {
 
     @Override
     public List<AccountingItem> accountForProduct(List<AccountingItem> items) {
-        return account(items);
+        // "channel", "market", "buyer", "businessGroup", "businessUnit", "product"
+        List<String> includeCondition = List.of("channel", "ignore", "ignore", "businessGroup", "businessUnit", "ignore");
+        List<String> excludeCondition = List.of("channel", "market", "ignore", "businessGroup", "businessUnit", "product");
+        return account(items, "market", includeCondition, excludeCondition);
     }
 
     @Override
     public List<AccountingItem> accountForChannel(List<AccountingItem> items) {
-        return account(items);
+        // "channel", "market", "buyer", "businessGroup", "businessUnit", "product"
+        List<String> includeCondition = List.of("channel", "ignore", "ignore", "businessGroup", "businessUnit", "ignore");
+        List<String> excludeCondition = List.of("channel", "market", "ignore", "businessGroup", "businessUnit", "product");
+        return account(items, "market", includeCondition, excludeCondition);
     }
 
-    private List<AccountingItem> account(List<AccountingItem> items) {
-        List<AccountingItem> toExpandItems = items.stream().filter(item -> "ALL".equals(item.getMarket()))
-                .collect(Collectors.toList());
-        List<AccountingItem> noChangeItems = items.stream().filter(item -> !"ALL".equals(item.getMarket()))
-                .collect(Collectors.toList());
-
-        List<AccountingItem> expandedItems = new ArrayList<AccountingItem>();
-        toExpandItems.forEach(item -> {
-            expandedItems.addAll(expandedItem(item));
-        });
-
-        return Stream.concat(noChangeItems.stream(), expandedItems.stream()).collect(Collectors.toList());
-    }
-
-    private List<AccountingItem> expandedItem(AccountingItem item) {
-        if (item.getChannel().equals("ALL")) {
-            return List.of(item);
-        }
-
-        Map<AccountingItem, Double> percentage = calculatePercentage(item);
-        return AccountingItemUtils.prorate(item, percentage);
-    }
-
-    private Map<AccountingItem, Double> calculatePercentage(AccountingItem baseItem) {
-        List<String> includeCondition = List.of("channel", "businessGroup", "businessUnit");
-        List<String> excludeCondition = List.of("market");
-        List<AccountingItem> items = repository.load(baseItem, includeCondition, excludeCondition);
-        double total = items.stream().mapToDouble(item -> item.getAmount()).sum();
-        return items.stream().collect(Collectors.toMap(item -> item, item -> item.getAmount() / total));
+    @Override
+    protected boolean cannotExpand(AccountingItem item) {
+        return item.getChannel().equals("ALL");
     }
 
 }

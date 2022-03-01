@@ -2,18 +2,15 @@ package com.sample.accounting.domain.accounting;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class AccountingItemUtils {
 
-    public static String getMergeKey(AccountingItem item) {
-        String[] condition = { "channel", "market", "buyer", "businessGroup", "businessUnit", "product", "subCatalog",
-                "catalog" };
+    public static String getMergeKey(AccountingItem item, List<String> condition) {
         Class<AccountingItem> clazz = AccountingItem.class;
         StringBuilder sb = new StringBuilder("");
-        Arrays.stream(condition).forEach(c -> {
+        condition.forEach(c -> {
             try {
                 Field field = clazz.getDeclaredField(c);
                 field.setAccessible(true);
@@ -31,16 +28,16 @@ public class AccountingItemUtils {
     public static String getValue(AccountingItem item, String name) {
         Class<AccountingItem> clazz = AccountingItem.class;
         String result = "";
-            try {
-                Field field = clazz.getDeclaredField(name);
-                field.setAccessible(true);
-                Object value = field.get(item);
-                if (value != null) {
-                    result = String.valueOf(value);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            Field field = clazz.getDeclaredField(name);
+            field.setAccessible(true);
+            Object value = field.get(item);
+            if (value != null) {
+                result = String.valueOf(value);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return result;
     }

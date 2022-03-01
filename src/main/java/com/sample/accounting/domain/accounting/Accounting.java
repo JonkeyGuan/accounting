@@ -25,7 +25,8 @@ public class Accounting {
         List<AccountingItem> items = repository.load();
         // log.info("raw data: " + items);
         List<BaseAccounting> path = assembleAccountingPath(
-                List.of("workHours", "workHoursNoneBG", "accountingMerge", "buyer", "market", "channel"));
+                List.of("workHours", "workHoursNoneBG", "accountingMerge", "product", "businessUnit", "businessGroup",
+                        "buyer", "market", "channel"));
         for (BaseAccounting node : path) {
             List<AccountingItem> expandItems = node.accountForProduct(items);
             items = expandItems;
@@ -37,7 +38,8 @@ public class Accounting {
     public void accountingByChannel() {
         List<AccountingItem> items = repository.load();
         // log.info("raw data: " + items);
-        List<BaseAccounting> path = assembleAccountingPath(List.of("buyer", "market", "channel"));
+        List<BaseAccounting> path = assembleAccountingPath(
+                List.of("buyer", "market", "channel", "product", "businessUnit", "businessGroup"));
         for (BaseAccounting node : path) {
             List<AccountingItem> expandItems = node.accountForChannel(items);
             items = expandItems;
